@@ -14,12 +14,20 @@
 # dir_mask_test = "/home/cotai/Phi/active/data_test/masks/"
 
 
-# gem
-dir_img =  "/mnt/DATA/hangd/data/full/data_train/imgs/"
-dir_mask = "/mnt/DATA/hangd/data/full/data_train/masks/"
+# # gem
+# dir_img =  "/mnt/DATA/hangd/data/full/data_train/imgs/"
+# dir_mask = "/mnt/DATA/hangd/data/full/data_train/masks/"
 
-dir_img_test = "/mnt/DATA/hangd/data/full/data_test/imgs/"
-dir_mask_test = "/mnt/DATA/hangd/data/full/data_test/masks/"
+# dir_img_test = "/mnt/DATA/hangd/data/full/data_test/imgs/"
+# dir_mask_test = "/mnt/DATA/hangd/data/full/data_test/masks/"
+
+# colab VNU
+dir_img =  "/content/full/data_train/imgs/"
+dir_mask = "/content/full/data_train/masks/"
+
+dir_img_test = "/content/full/data_test/imgs/"
+dir_mask_test = "/content/full/data_test/masks/"
+
 
 
 GAUSS_ITERATION = 25
