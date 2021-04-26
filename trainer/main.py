@@ -2,6 +2,7 @@ import sys
 
 # sys.path.append("/mnt/DATA/hangd/code/act_lear_2/") # GEM
 sys.path.append("/content/act_lear_2/") #colab
+from models.pan_regnety120.pan import PAN
 import segment_model as sm
 import argparse
 import logging
@@ -26,7 +27,6 @@ global val_iou_score
 global best_val_iou_score
 global best_test_iou_score
 
-
 val_iou_score = 0.
 best_val_iou_score = 0.
 best_test_iou_score = 0.
@@ -39,21 +39,37 @@ def train_net(
         device,
         epochs=20,
         save_cp=True,
-        acquisition_function="random"):
+        acquisition_function="random",
+        tf_log_dir=None,):
+    """
+    Train the model.
+
+    Args:
+        dir_checkpoint: (bool): write your description
+        n_classes: (int): write your description
+        n_channels: (int): write your description
+        device: (todo): write your description
+        epochs: (todo): write your description
+        save_cp: (bool): write your description
+        acquisition_function: (todo): write your description
+    """
 
     global best_val_iou_score
     global best_test_iou_score
 
     # net = PAN(is_dropout=True)
-    net = sm.DeepLabV3('dpn98', is_dropout=True)
+    net = sm.DeepLabV3('dpn98')(is_dropout=True)
     net.to(device=device)
 
-    net_no_dropout = sm.DeepLabV3('dpn98', is_dropout=False)
+    # net_no_dropout = PAN(is_dropout=False)
+    net_no_dropout = sm.DeepLabV3('dpn98')(is_dropout=False)
     net_no_dropout.to(device=device)
 
-    batch_size = 2
+    batch_size = 4
     lr = 1e-5
+
     writer = SummaryWriter(
+        log_dir=tf_log_dir,
         comment=f'_{net.__class__.__name__}_LR_{lr}_BS_{batch_size}_{acquisition_function}_ACQUISITION'
     )
     global_step = 0
@@ -86,8 +102,8 @@ def train_net(
     else:
         criterion_no_dropout = nn.BCEWithLogitsLoss()
 
-    num_phases = 35
-    # total 2689 imgs, within each phase: fetching 50 imgs to training set.
+    num_phases = 50
+    # total 2689 imgs, within each phase: fetching 100 imgs to training set.
     training_pool_ids_path = f"../database/data_165_{acquisition_function}.json"
     all_training_data = "../database/data_all.json"
 
@@ -167,7 +183,13 @@ def get_acquisition_func(i: int):
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     args = get_args()
-    current_dir = os.getcwd()
+
+    # tf_dir = None                # not Colab
+    # current_dir = os.getcwd()    # not Colab
+
+    current_dir = "/content/drive/MyDrive/thesis_uni/dlv3_dpn98"  # colab
+    tf_dir =      "/content/drive/MyDrive/thesis_uni/dlv3_dpn98"  # colab
+
     try:
         os.mkdir(os.path.join(current_dir, "check_point_active"))
         logging.info('Created ckpt active directory')
@@ -175,7 +197,8 @@ if __name__ == '__main__':
         pass
 
     acquisition_func = get_acquisition_func(args.acquisition_func)
-    dir_ckp = os.path.join(current_dir, f"check_point_active/{acquisition_func}/")
+    dir_ckp = os.path.join(current_dir, f"check_point_active/{acquisition_func}/")  
+        
 
     if torch.cuda.is_available():
         _device = 'cuda:' + str(args.cuda_inx)
@@ -201,7 +224,8 @@ if __name__ == '__main__':
                   n_channels=n_channels,
                   epochs=args.epochs,
                   device=device,
-                  acquisition_function=acquisition_func
+                  acquisition_function=acquisition_func,
+                  tf_log_dir=tf_dir
                   )
     except KeyboardInterrupt:
         logging.info('Saved interrupt')
@@ -210,4 +234,3 @@ if __name__ == '__main__':
         except SystemExit:
             os._exit(0)
 
-# sửa số epoch, Gaussian iteration
