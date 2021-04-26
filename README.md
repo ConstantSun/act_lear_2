@@ -7,10 +7,10 @@ $ python main.py -acq 0 -cuda 0
 #### 
     cfe    : 0
 
-    mfe    : 1
+    mfe    : 1 ...
 
     mi     : 2
 
     std    : 3
-    
-    random : 4
+
+    random : 4 ...
