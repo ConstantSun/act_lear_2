@@ -1,7 +1,6 @@
 import sys
 
-sys.path.append("/home/cotai/Phi/active/cleancode/")
-from models.pan_regnety120.pan import PAN
+sys.path.append("/mnt/DATA/hangd/code/act_lear_2/")
 import segment_model as sm
 import argparse
 import logging
@@ -26,7 +25,6 @@ global val_iou_score
 global best_val_iou_score
 global best_test_iou_score
 
-lưu thêm dice overall 
 
 val_iou_score = 0.
 best_val_iou_score = 0.
@@ -41,31 +39,19 @@ def train_net(
         epochs=30,
         save_cp=True,
         acquisition_function="random"):
-    """
-    Train the model.
-
-    Args:
-        dir_checkpoint: (bool): write your description
-        n_classes: (int): write your description
-        n_channels: (int): write your description
-        device: (todo): write your description
-        epochs: (todo): write your description
-        save_cp: (bool): write your description
-        acquisition_function: (todo): write your description
-    """
 
     global best_val_iou_score
     global best_test_iou_score
 
     # net = PAN(is_dropout=True)
-    net = sm.DeepLabV3('dpn98')(is_dropout=True)
+    net = sm.DeepLabV3('dpn98', is_dropout=True)
     net.to(device=device)
 
     # net_no_dropout = PAN(is_dropout=False)
-    net_no_dropout = sm.DeepLabV3('dpn98')(is_dropout=False)
+    net_no_dropout = sm.DeepLabV3('dpn98', is_dropout=False)
     net_no_dropout.to(device=device)
 
-    batch_size = 4
+    batch_size = 2
     lr = 1e-5
     writer = SummaryWriter(
         comment=f'_{net.__class__.__name__}_LR_{lr}_BS_{batch_size}_{acquisition_function}_ACQUISITION'

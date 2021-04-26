@@ -1,4 +1,4 @@
-name: /data.local/all/hangd/env/pytorch
+name: pyenv
 channels:
   - pytorch
   - conda-forge
@@ -179,7 +179,6 @@ dependencies:
     - nest-asyncio==1.4.1
     - netifaces==0.10.9
     - networkx==2.5
-    - nni==1.9-5-g98a72a1e
     - notebook==6.1.4
     - omegaconf==2.0.5
     - opencv-python==4.4.0.46
@@ -230,5 +229,5 @@ dependencies:
     - websockets==8.1
     - widgetsnbextension==3.5.1
     - zipp==3.3.0
-prefix: /data.local/all/hangd/env/pytorch
+prefix: pyenv
 
