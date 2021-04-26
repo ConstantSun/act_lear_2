@@ -58,11 +58,11 @@ def train_net(
     global best_test_iou_score
 
     # net = PAN(is_dropout=True)
-    net = sm.DeepLabV3('dpn98')(is_dropout=True)
+    net = sm.DeepLabV3('dpn98',is_dropout=True)
     net.to(device=device)
 
     # net_no_dropout = PAN(is_dropout=False)
-    net_no_dropout = sm.DeepLabV3('dpn98')(is_dropout=False)
+    net_no_dropout = sm.DeepLabV3('dpn98',is_dropout=False)
     net_no_dropout.to(device=device)
 
     batch_size = 4
