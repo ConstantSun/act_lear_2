@@ -1,6 +1,7 @@
 import sys
 
-sys.path.append("/mnt/DATA/hangd/code/act_lear_2/")
+# sys.path.append("/mnt/DATA/hangd/code/act_lear_2/") # GEM
+sys.path.append("/content/act_lear_2/") #colab
 import segment_model as sm
 import argparse
 import logging
