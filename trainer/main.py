@@ -2,7 +2,6 @@ import sys
 
 # sys.path.append("/mnt/DATA/hangd/code/act_lear_2/") # GEM
 sys.path.append("/content/act_lear_2/") #colab
-from models.pan_regnety120.pan import PAN
 import segment_model as sm
 import argparse
 import logging
