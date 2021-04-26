@@ -36,7 +36,7 @@ def train_net(
         n_classes,
         n_channels,
         device,
-        epochs=30,
+        epochs=20,
         save_cp=True,
         acquisition_function="random"):
 
@@ -47,7 +47,6 @@ def train_net(
     net = sm.DeepLabV3('dpn98', is_dropout=True)
     net.to(device=device)
 
-    # net_no_dropout = PAN(is_dropout=False)
     net_no_dropout = sm.DeepLabV3('dpn98', is_dropout=False)
     net_no_dropout.to(device=device)
 
@@ -87,7 +86,7 @@ def train_net(
         criterion_no_dropout = nn.BCEWithLogitsLoss()
 
     num_phases = 35
-    # total 2689 imgs, within each phase: fetching 100 imgs to training set.
+    # total 2689 imgs, within each phase: fetching 50 imgs to training set.
     training_pool_ids_path = f"../database/data_165_{acquisition_function}.json"
     all_training_data = "../database/data_all.json"
 
@@ -135,7 +134,7 @@ def get_args():
                         help='Choose acquisition function index for collecting data')
     parser.add_argument('-cuda', '--cuda-inx', type=int, nargs='?', default=1,
                         help='index of cuda', dest='cuda_inx')
-    parser.add_argument('-e', '--epochs', metavar='E', type=int, default=30,
+    parser.add_argument('-e', '--epochs', metavar='E', type=int, default=20,
                         help='Number of epochs', dest='epochs')
     parser.add_argument('-b', '--batch-size', metavar='B', type=int, nargs='?', default=4,
                         help='Batch size', dest='batchsize')

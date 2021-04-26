@@ -11,7 +11,7 @@ def train(net: torch.nn, data_train, train_loader, criterion, optimizer, writer,
           device, global_step, test_loader, n_classes, dir_checkpoint, logging, phase):
 
     best_test_iou_score = 0
-    best_dice_iou_score = 0
+    best_test_dice_score = 0
     dropout_flag = "dropout" + str(net.is_dropout)
     right_previous_ckpt_dir = Path(dir_checkpoint + f'best_CP_165_{dropout_flag}.pth')
     if right_previous_ckpt_dir.is_file():

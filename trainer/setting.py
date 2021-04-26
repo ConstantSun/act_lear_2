@@ -22,6 +22,5 @@ dir_img_test = "/mnt/DATA/hangd/data/full/data_test/imgs/"
 dir_mask_test = "/mnt/DATA/hangd/data/full/data_test/masks/"
 
 
-
-GAUSS_ITERATION = 30
+GAUSS_ITERATION = 25
 NUM_FETCHED_IMG = 50
