@@ -2,7 +2,7 @@
 ### How to run:
 Go to trainer folder and run: 
 
-$ python main.py -acq 0 -cuda 0 
+$ python main.py -acq 0 -cuda 0 -dir path/to/save/ckpt
 
 #### 
     cfe    : 0
