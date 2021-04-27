@@ -156,7 +156,7 @@ def get_args():
                         help='Batch size', dest='batchsize')
     parser.add_argument('-lr', '--learning-rate', metavar='LR', type=float, nargs='?', default=0.00001,
                         help='Learning rate', dest='lr')
-    parser.add_argument('-dir', '--dir', dest='save_directory', type=str, default="/content/drive/MyDrive/thesis_uni/dlv3_dpn98",
+    parser.add_argument('-savedir', '--savedir', dest='save_directory', type=str, default="/content/drive/MyDrive/thesis_uni/dlv3_dpn98",
                         help='Directory of tfboard and checkpoint path')
     parser.add_argument('-f', '--load', dest='load', type=str, default=False,
                         help='Load model from a .pth file')
@@ -188,8 +188,8 @@ if __name__ == '__main__':
     # tf_dir = None                # not Colab
     # current_dir = os.getcwd()    # not Colab
 
-    current_dir = args.dir  # colab
-    tf_dir      = args.dir  # colab
+    current_dir = args.save_directory  # colab
+    tf_dir      = args.save_directory  # colab
     
 
     try:
