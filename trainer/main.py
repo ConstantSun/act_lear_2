@@ -40,7 +40,7 @@ def train_net(
         save_cp=True,
         acquisition_function="random",
         tf_log_dir=None,
-        data_dir):
+        data_dir=None):
     """
     Train the model.
 
