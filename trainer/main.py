@@ -105,7 +105,7 @@ def train_net(
     num_phases = 50
     # total 2689 imgs, within each phase: fetching 100 imgs to training set.
     training_pool_ids_path = f"{data_dir}/data_165_{acquisition_function}.json"
-    all_training_data = f"{data_dir}/database/data_all.json"
+    all_training_data = f"{data_dir}/data_all.json"
 
     pre_phase = 0
     pre_epoch = 0
