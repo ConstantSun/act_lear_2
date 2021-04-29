@@ -39,7 +39,8 @@ def train_net(
         epochs=20,
         save_cp=True,
         acquisition_function="random",
-        tf_log_dir=None,):
+        tf_log_dir=None,
+        data_dir):
     """
     Train the model.
 
@@ -103,8 +104,8 @@ def train_net(
 
     num_phases = 50
     # total 2689 imgs, within each phase: fetching 100 imgs to training set.
-    training_pool_ids_path = f"../database/data_165_{acquisition_function}.json"
-    all_training_data = "../database/data_all.json"
+    training_pool_ids_path = f"{data_dir}/data_165_{acquisition_function}.json"
+    all_training_data = f"{data_dir}/database/data_all.json"
 
     pre_phase = 0
     pre_epoch = 0
@@ -158,6 +159,8 @@ def get_args():
                         help='Learning rate', dest='lr')
     parser.add_argument('-savedir', '--savedir', dest='save_directory', type=str, default="/content/drive/MyDrive/thesis_uni/dlv3_dpn98",
                         help='Directory of tfboard and checkpoint path')
+    parser.add_argument('-datadir', '--datadir', dest='data_directory', type=str, default="/content/drive/MyDrive/thesis_uni/act_1",
+                        help='Directory of tfboard and checkpoint path')        
     parser.add_argument('-f', '--load', dest='load', type=str, default=False,
                         help='Load model from a .pth file')
 
@@ -190,6 +193,7 @@ if __name__ == '__main__':
 
     current_dir = args.save_directory  # colab
     tf_dir      = args.save_directory  # colab
+    data_dir    = args.data_directory  # colab
     
 
     try:
@@ -227,7 +231,8 @@ if __name__ == '__main__':
                   epochs=args.epochs,
                   device=device,
                   acquisition_function=acquisition_func,
-                  tf_log_dir=tf_dir
+                  tf_log_dir=tf_dir,
+                  data_dir=data_dir
                   )
     except KeyboardInterrupt:
         logging.info('Saved interrupt')
