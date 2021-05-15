@@ -68,7 +68,7 @@ def mutual_information(GAUSS_ITERATION: int, net: torch.nn, imgs: torch.tensor) 
     H_mean − H_cato
 
     """
-    res = mean_first_entropy(GAUSS_ITERATION, net, imgs) - category_first_entropy(GAUSS_ITERATION, net, imgs)
+    res = mean_first_entropy(GAUSS_ITERATION, net, imgs) - category_first_entropy(GAUSS_ITERATION, net, imgs) ######################## turn into absolute VALUE ??
     return res
 
 
