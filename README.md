@@ -1,4 +1,4 @@
-# act_lear_2 ( Arch: DeepLabV3_DPN98 with 86.5% )
+# act_lear_2 ( Arch: DeepLabV3_DPN98 with 86.5% IOU )
 ### How to run:
 Go to trainer folder and run: 
 
