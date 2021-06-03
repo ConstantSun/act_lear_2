@@ -1,7 +1,9 @@
 import sys
 
 # sys.path.append("/mnt/DATA/hangd/code/act_lear_2/") # GEM
-sys.path.append("/content/act_lear_2/") #colab
+# sys.path.append("/content/act_lear_2/") #colab
+sys.path.append(os.path.dirname(os.getcwd()))
+
 import segment_model as sm
 import argparse
 import logging
@@ -188,8 +190,9 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     args = get_args()
 
-    # tf_dir = None                # not Colab
-    # current_dir = os.getcwd()    # not Colab
+#     tf_dir = None                # not Colab
+#     current_dir = os.getcwd()    # not Colab
+#     data_dir = os.path.join(os.path.abspath(os.path.join(os.getcwd(), os.pardir)), "database")
 
     current_dir = args.save_directory  # colab
     tf_dir      = args.save_directory  # colab
