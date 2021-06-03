@@ -1,5 +1,5 @@
 import sys
-
+import os
 # sys.path.append("/mnt/DATA/hangd/code/act_lear_2/") # GEM
 # sys.path.append("/content/act_lear_2/") #colab
 sys.path.append(os.path.dirname(os.getcwd()))
@@ -7,8 +7,6 @@ sys.path.append(os.path.dirname(os.getcwd()))
 import segment_model as sm
 import argparse
 import logging
-import os
-import sys
 
 import torch
 import torch.nn as nn
